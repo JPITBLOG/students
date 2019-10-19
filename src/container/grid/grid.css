@@ -1,0 +1,5 @@
+.gridPagination {
+    position:absolute;
+    left: 50%;
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+}
