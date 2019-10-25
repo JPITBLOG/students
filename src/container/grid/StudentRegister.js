@@ -92,7 +92,6 @@ class StudentRegister extends Component{
         let marksDetail = this.state.marksDetail.slice();
         if(e.target.value === "0") marksDetail[index][name] = null    
         else marksDetail[index][name] = e.target.value;
-        debugger
         this.setState({marksDetail:marksDetail})
     }
 
@@ -253,7 +252,8 @@ class StudentRegister extends Component{
 
         //zipcod
         if(this.zipcod !== null && this.zipcod !== ''){
-            if(isNaN(this.zipcod)){
+            let NumbarFormat = /^[0-9]*$/;
+            if(!this.zipcod.match(NumbarFormat)){
                 errors['zipcod'] = "only number is allowed";
                 formIsValidate = false;
             }
@@ -269,6 +269,7 @@ class StudentRegister extends Component{
         
         //marksDetail
         if(this.marksDetails !== undefined){
+            let NumbarFormat = /^[0-9]*$/;
             this.marksDetails.map(function (marksDetail,index) {
                 if(marksDetail.subject === null || marksDetail.marks === null || marksDetail.marks.length === 0){
                     if(marksDetail.subject === null){
@@ -280,13 +281,13 @@ class StudentRegister extends Component{
                         formIsValidate = false;
                     }
                 }
-                else if(isNaN(marksDetail.marks)){
-                    errors['marks'+index] = "enter mark at row: "+(index+1);
+                else if(!marksDetail.marks.match(NumbarFormat)){
+                    errors['marks'+index] = "enter only Digit in Mark at: "+(index+1);
                     formIsValidate = false;
                 }
                 else {
                     if(marksDetail.marks.length > 3){
-                        errors['marks'+index] = "3 digit require at: "+(index+1);
+                        errors['marks'+index] = "Maximum 3 digit allow in Mark at: "+(index+1);
                         formIsValidate = false;
                     }
                 }
@@ -349,7 +350,6 @@ class StudentRegister extends Component{
             if(this.state._id  !== null){
                 this.clearState();
             }
-            debugger;
         }
     }
 

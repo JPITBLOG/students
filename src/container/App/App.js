@@ -11,7 +11,8 @@ import * as getDataLengthAction from "../../action/dataLength";
 class App extends Component{
 
     componentDidMount() {
-        this.props.action.getAllSubject.getAllSubject();
+        //this.props.action.getAllSubject.getAllSubject();
+        this.props.action.getAllSubject.fetchTodos();
         this.props.action.getDataLength.dataLength();
     }
 

@@ -37,7 +37,7 @@ class Grid extends Component{
     render(){
         return(
             <div>
-                <Button className = {`mt-2 mb-0 ml-3`} outline color="primary" onClick={this.registrPopup}>Add Student</Button>{' '}
+                <Button id = "AddStudent" className = {`mt-2 mb-0 ml-3`} outline color="primary" onClick={this.registrPopup}>Add Student</Button>{' '}
                 <GridTable studentData={this.state.allStudent} editData = {(event,studentData) => this.editHandleClick(event,studentData)}/>
                 <StudentRegister isOpen={this.state.modal} toggle={this.registrPopup} className={this.props.className}
                                   studentData = {this.state.studentData}/>

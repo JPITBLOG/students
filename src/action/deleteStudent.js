@@ -13,10 +13,11 @@ export const deleteStudent = (studentId) => dispatch => {
             }
         }).catch((error) => {
             if(error.response){
+                debugger
                 dispatch({
                     type:ERROR_WHILE_DELETE_STUDENT,
                     data:{error_msg: error.response ? error.response.data.error : "there is an error while delete data"}
-                });
+                })
                 return false;
             }
         })

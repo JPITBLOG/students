@@ -198,7 +198,7 @@ class GridTable extends Component{
                         </div>
                     )
                     :
-                    <div>null</div>
+                    <div>{"Loading..."}</div>
     }
 
     render(){

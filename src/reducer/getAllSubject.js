@@ -9,7 +9,7 @@ export const ERROR_IN_FETCHED_SUBJECT = "ERROR_IN_FETCHED_SUBJECT";
 export default (state = INITIAL_STATE,action) => {
     switch (action.type){
         case SUBJECT_FETCHED_SUCCESSFUL:{
-            return Object.assign({},state,{...state,Allsubject:action.data});
+            return Object.assign({},state,{...state,Allsubject:action.data,error_msg:""});
         }
         case ERROR_IN_FETCHED_SUBJECT:{
             return Object.assign({},state,{error_msg:action.data.error_msg});
