@@ -5,6 +5,7 @@ import expect from 'expect' // You can use any testing library
 import{getAllSubject} from './getAllSubject'
 import '../reducer/getAllSubject';
 import baseService from '../service/base';
+import {passSubject} from '../TestCaseValue/actionTestCaseValue';
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -18,43 +19,9 @@ describe('getAllSubject from action', () => {
 
     it('creates FETCH_TODOS_SUCCESS when fetching todos has been done', () => {
         mock.onGet('/subject/getallsubject').reply(200,
-            [
-                {
-                    "_id": "5dada8f927bf5f0124f5aabf",
-                    "subject": "Gujarati"
-                },
-        {
-            "_id": "5dada92127bf5f0124f5aac0",
-            "subject": "Hindi"
-        },
-        {
-            "_id": "5dada93527bf5f0124f5aac1",
-            "subject": "English"
-        },
-        {
-            "_id": "5dada94127bf5f0124f5aac2",
-            "subject": "Maths"
-        }
-        ])
+            passSubject())
         const expectedActions = [
-            { type: "SUBJECT_FETCHED_SUCCESSFUL", data: [
-                    {
-                        "_id": "5dada8f927bf5f0124f5aabf",
-                        "subject": "Gujarati"
-                    },
-                    {
-                        "_id": "5dada92127bf5f0124f5aac0",
-                        "subject": "Hindi"
-                    },
-                    {
-                        "_id": "5dada93527bf5f0124f5aac1",
-                        "subject": "English"
-                    },
-                    {
-                        "_id": "5dada94127bf5f0124f5aac2",
-                        "subject": "Maths"
-                    }
-                ] }
+            { type: "SUBJECT_FETCHED_SUCCESSFUL", data: passSubject() }
         ]
         const store = mockStore( {Allsubject: []} )
         return store.dispatch(getAllSubject())

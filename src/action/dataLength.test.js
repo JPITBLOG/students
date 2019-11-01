@@ -23,7 +23,7 @@ describe("get data length",() => {
             { type: "DATA_LENGTH_FETCHED_SUCCESSFULLY", data: {
                     "dataLength": 4
                 } }]
-        const store = mockStore( {DataLength: []} )
+        const store = mockStore({DataLength: []})
         return store.dispatch(dataLength())
             .then(() => {
                 expect(store.getActions()).toEqual(expectedActions)

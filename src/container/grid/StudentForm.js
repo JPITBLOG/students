@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 import {Alert, Form,Row,Col, FormGroup, Input} from "reactstrap";
 
-class StudentForm extends Component{
+export default class StudentForm extends Component{
 
     render(){
+        console.log("props value from test case: ",this.props.errors["fname"]);
         return(
             <Form className={'mt-3'}>
-                {this.props.error_flag ? (<Alert color="danger">There is an error while pass data.</Alert>): null}
+                {this.props.error_flag ? (<Alert id="AlertId" color="danger">There is an error while pass data.</Alert>): null}
                 <FormGroup>
                     <Input onChange = {event => this.props.handleChange(event,"fname")} type="text" name="name" id="fnam" placeholder="First Name" value = {this.props.state.fname || ''}/>
                     <span style={{color: "red"}}>{this.props.errors["fname"]}</span>
@@ -62,4 +63,3 @@ class StudentForm extends Component{
         );
     }
 }
-export default StudentForm;

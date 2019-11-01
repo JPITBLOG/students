@@ -19,7 +19,7 @@ import * as AddStudentDetailAction from "../../action/AddStudentDetail";
 import * as getDataLengthAction from "../../action/dataLength";
 import * as editStudentAction from "../../action/editStudentDetail";
 
-class StudentRegister extends Component{
+export class StudentRegister extends Component{
     constructor(props){
         super(props);
         this.toggle = this.toggle.bind(this);
@@ -68,7 +68,6 @@ class StudentRegister extends Component{
         if(this.state.subject.length === 1){
             this.setState({subject:[...this.state.subject,...subjectdata]});
         }
-        
     }
 
     componentDidUpdate = () => {
@@ -374,7 +373,10 @@ class StudentRegister extends Component{
             selectinputs: ['selectinput-0'],
             inputs: ['input-0'],
             link: ['link-0']
-        })
+        },
+            () => {
+                console.log(this.state);
+            })
         return true;
     }
 

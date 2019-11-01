@@ -25,8 +25,5 @@ describe("delete student by action",() => {
                 } }]
         const store = mockStore( {DeleteMessage: []})
         return store.dispatch(deleteStudent(deleteId))
-            // .then(() => {
-            //     expect(store.getActions()).toEqual(expectedActions)
-            // })
     })
 })

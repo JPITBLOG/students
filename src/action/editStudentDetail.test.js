@@ -5,6 +5,7 @@ import expect from 'expect' // You can use any testing library
 import baseService from '../service/base';
 import {EditStudentDetail} from './editStudentDetail'
 import {STUDENT_SUCCESSFUL_EDIT} from '../reducer/getAllStudent';
+import {editData} from '../TestCaseValue/actionTestCaseValue';
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
@@ -31,39 +32,11 @@ describe("Edit student by action",() => {
             {_id:"2",subject:"Maths",marks:40,isdelete: 1}]
         data.append('subjectContent',marksDetail);
         mock.onPost("/student/editstudent").reply(200,
-            [{
-                    '_id':"0123",
-                    'fname': "fname",
-                    'lname': "lname",
-                    'dob': "11-8-95",
-                    'studentImage': "there is image file",
-                    'address_one': "this is my first address",
-                    'address_two': "this is my first address",
-                    'state': "Gujarat",
-                    'city': "Surat",
-                    'zipcod': "122211",
-                    'isdelete': 0,
-                    'marks':[{_id:"1",subject:"Gujarati",marks:23,isdelete: 0},
-                        {_id:"2",subject:"Maths",marks:40,isdelete: 1}]
-                }]
+            editData()
         )
         const expectedActions = [
             {
-                type: STUDENT_SUCCESSFUL_EDIT, data: [{
-                    '_id': "0123",
-                    'fname': "fname",
-                    'lname': "lname",
-                    'dob': "11-8-95",
-                    'studentImage': "there is image file",
-                    'address_one': "this is my first address",
-                    'address_two': "this is my first address",
-                    'state': "Gujarat",
-                    'city': "Surat",
-                    'zipcod': "122211",
-                    'isdelete': 0,
-                    'marks': [{_id: "1", subject: "Gujarati", marks: 23, isdelete: 0},
-                        {_id: "2", subject: "Maths", marks: 40, isdelete: 1}]
-                }]
+                type: STUDENT_SUCCESSFUL_EDIT, data: editData()
             }]
         const store = mockStore( {EditedData: []})
         return store.dispatch(EditStudentDetail(data))

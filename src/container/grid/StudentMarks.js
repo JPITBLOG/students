@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Button} from "react-bootstrap";
 import index from "../../reducer";
 
-class StudentMarks extends Component{
+export default class StudentMarks extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -100,4 +100,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps,null)(StudentMarks);
+// export default connect(mapStateToProps,null)(StudentMarks);

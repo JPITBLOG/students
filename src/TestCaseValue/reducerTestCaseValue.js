@@ -1,5 +1,4 @@
 export const stateValue = () => {
-    console.log("there is some problem")
     return {Allstudent:[{
         "_id": "5db15d02a234701cd4500d45",
         "fname": "Biren",

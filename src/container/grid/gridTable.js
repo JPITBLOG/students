@@ -10,7 +10,7 @@ import * as editStudentAction from '../../action/editStudentDetail';
 import * as getDataLengthAction from "../../action/dataLength";
 import './grid.css';
 
-class GridTable extends Component{
+export class GridTable extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -52,6 +52,7 @@ class GridTable extends Component{
         const that = this;
         let studentMapped = [];
         let subjectName;
+        let dataget = this.props.dataget;
         let subjectdata = this.props.getAllSubject.Allsubject;
         let allStudent = this.state.allstudents;
         allStudent.map(function (student,index) {
@@ -119,7 +120,6 @@ class GridTable extends Component{
         //for delete
         if(this.state.isdelete === 1){
             pageIndex = this.state.pageIndex;
-        
         }
         else
             pageIndex = 1;
@@ -134,10 +134,12 @@ class GridTable extends Component{
                                 .then((resp) => {
                                     if(resp)
                                         allStudent = this.props.getAllStudent.Allstudent;
+                                    debugger;
                                 })
                         }
                         else {
                             allStudent = this.props.getAllStudent.Allstudent;
+                            debugger;
                         }
                         if(this.state.allstudents.length > 0){
                                 this.setState({allstudents:allStudent,isdelete:0})
@@ -151,20 +153,19 @@ class GridTable extends Component{
             allStudent = this.props.getAllStudent.Allstudent;
             this.setState({allstudents:allStudent})
             this.props.action.editStudentAction.EditFlag(0)
-            
         }
     }
 
     componentDidMount = async () => {
-                    let allStudent;
-                    this.paginationFunction();
-                    let pageIndex = this.state.pageIndex;
-                    this.props.action.getAllStudent.getAllStudents(pageIndex).then((d => {
-                        if (d) {
-                            allStudent = this.props.getAllStudent.Allstudent;
-                            this.setState({allstudents:allStudent});
-                        }
-                    }))
+        let allStudent;
+        this.paginationFunction();
+        let pageIndex = this.state.pageIndex;
+        this.props.action.getAllStudent.getAllStudents(pageIndex).then((d => {
+            if (d) {
+                allStudent = this.props.getAllStudent.Allstudent;
+                this.setState({allstudents: allStudent});
+            }
+        }))
     }
 
     gridTable = () => {
