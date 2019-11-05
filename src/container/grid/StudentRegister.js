@@ -25,6 +25,7 @@ export class StudentRegister extends Component{
         this.toggle = this.toggle.bind(this);
         this.onChangeHandler = this.onChangeHandler.bind(this);
         this.getEditedData = this.getEditedData.bind(this);
+        this.setTogalData = this.setTogalData.bind(this);
         
         this._id = null;
         this.fname = null;
@@ -430,21 +431,21 @@ export class StudentRegister extends Component{
         }
     }
 
-    setTogalData = () => {
-        this.clearState()
+    setTogalData (){
+        this.clearState();
         this.props.toggle();
     }
 
     render (){
         return(
             <React.Fragment>
-            <Modal isOpen={this.props.isOpen} toggle={this.setTogalData.bind(this)} className={this.props.className}>
+            <Modal isOpen={this.props.isOpen} toggle={this.setTogalData} className={this.props.className} id="modal">
                 <ModalHeader toggle={this.setTogalData.bind(this)}>Student Data!</ModalHeader>
                 <ModalBody>
                     <div>
                         <Nav tabs>
                             <NavItem>
-                                <NavLink
+                                <NavLink id="navLink1"
                                     className={classnames({ active: this.state.activeTab === '1' })}
                                     onClick={() => { this.toggle('1'); }}
                                 >

@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Grid from './grid';
 import GridTable from './gridTable';
 import StudentRegister from './StudentRegister';
+import renderer from 'react-test-renderer';
 
 configure({adapter: new Adapter()});
 
@@ -16,6 +17,8 @@ const setUp = () => {
 
 describe('Test case for grid',() =>{
     const {component} = setUp()
+    // const componentSnap = renderer.create(<Grid/>);
+    // let tree = componentSnap.toJSON();
     test('check grid Add student model open',()=>
     {
         const addStudentButton = component.find('#AddStudent');

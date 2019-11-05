@@ -1,12 +1,11 @@
 import React from 'react';
-import {shallow, configure, mount} from 'enzyme';
+import {shallow, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {GridTable} from './gridTable';
 import {getAllStudent,subjectData} from '../../TestCaseValue/componentTestCaseValue';
-import Store from '../../store';
-import {Provider} from 'react-redux';
 
 configure({adapter: new Adapter()});
+
 const props = {
     dataget: "name",
     dataLength:{data_length:{ "dataLength": 6}},
@@ -39,14 +38,14 @@ describe('Test case for gridTable',() =>{
         expect(wrapper.state({totalNumbarOfPage:2,dataLength:6,pageIndex:1}));
     })
 })
-    // test('Test case for deleteData',() => {
-    //     let wrapper = shallow(<GridTable {...props}/>);
-    //     wrapper.setState({isdelete:1})
-    //     wrapper.instance().deleteData("01234");
-    // })
-    //test('Test case for component did update',() => {
-    //     const wrapper = shallow(<GridTable {...props}/>);
-    //     wrapper.setState({isdelete:1,dataLength:5});
-    //     wrapper.instance().componentDidUpdate();
-    //     expect(wrapper.state({isdelete:0,allstudents:getAllStudent()}))
-    // })
+// test('Test case for deleteData',() => {
+//     let wrapper = shallow(<GridTable {...props}/>);
+//     wrapper.setState({isdelete:1})
+//     wrapper.instance().deleteData("01234");
+// })
+// test('Test case for component did update',() => {
+//     const wrapper = shallow(<GridTable {...props}/>);
+//     wrapper.setState({isdelete:1,dataLength:5});
+//     wrapper.instance().componentDidUpdate();
+//     expect(wrapper.state({isdelete:0,allstudents:getAllStudent()}))
+// })

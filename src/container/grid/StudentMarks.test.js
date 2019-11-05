@@ -1,10 +1,8 @@
 import React from 'react';
-import { shallow,configure,mount } from 'enzyme';
+import { shallow,configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import StudentMarks from './StudentMarks';
+import {StudentMarks} from './StudentMarks';
 import {marksDetailData, subjectData} from "../../TestCaseValue/componentTestCaseValue";
-import Store from "../../store";
-import {Provider} from "react-redux";
 
 configure({adapter: new Adapter()});
 
@@ -20,7 +18,7 @@ const props = {
 const matchSubjectData = [{_id:0,subject:"select"},...subjectData()]
 
 describe('Test case for student marks',() => {
-    const wrapper = mount(shallow(<Provider store={Store}><StudentMarks {...props}/></Provider>).get(0));
+    const wrapper = shallow(<StudentMarks {...props}/>);
     test("check the component did mount",() => {
         expect(wrapper.state('subject')).toEqual(matchSubjectData);
     })

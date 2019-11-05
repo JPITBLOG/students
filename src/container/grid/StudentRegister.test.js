@@ -1,21 +1,36 @@
 import React from 'react';
 import {StudentRegister} from './StudentRegister';
-import {shallow, configure, mount} from 'enzyme';
+import {shallow, configure} from 'enzyme';
 import {subjectData, studentData, setEditData, matchAddElementState} from '../../TestCaseValue/componentTestCaseValue';
+import renderer from 'react-test-renderer';
 import Adapter from "enzyme-adapter-react-16";
 
 configure({adapter: new Adapter()});
 
 const props = {
     getAllSubject:{Allsubject:subjectData()},
-    studentData: studentData()
+    studentData: studentData(),
+    toggle: jest.fn(),
+    isOpen: false
 }
+
+const file = ({url:'example.png',type: 'image/png'});
+
+const e = {
+    target: { value: 'jigar',files:[file]}
+};
 
 describe('Test case for Student Register',() => {
     let store;
     const student = setEditData();
+    const mockPropSetToggle = jest.fn();
+    global.URL.createObjectURL = jest.fn();
+    const TogalDataSpy = jest.spyOn(StudentRegister.prototype, 'toggle');
+    const setTogalDataSpy = jest.spyOn(StudentRegister.prototype, 'setTogalData');
+    // const sethandleChange = jest.spyOn(StudentRegister.prototype, 'handleChange');
 
-    let wrapper = shallow(<StudentRegister {...props}/>);
+    let wrapper = shallow(<StudentRegister  {...props}/>);
+
     test('test studentRegister component',() => {
         expect(wrapper.state('subject')).toEqual([{_id:0,subject:"select"},...subjectData()])
     })
@@ -53,4 +68,28 @@ describe('Test case for Student Register',() => {
         wrapper.instance().toggle(2);
         expect(wrapper.state('activeTab')).toEqual(2);
     })
+    test('test for render snapShot',() => {
+            const Modal = wrapper.find('#modal');
+            expect(Modal.prop('isOpen')).toEqual(false);
+            wrapper.find("#navLink1").simulate('click');
+            expect(TogalDataSpy).toHaveBeenCalledTimes(2);
+            wrapper.instance().setTogalData();
+            expect(setTogalDataSpy).toHaveBeenCalledTimes(1);
+            expect(Modal.find('TabContent').prop('activeTab')).toEqual(2);
+            expect(Modal.find('StudentForm').prop('error_flag')).toEqual(false);
+            wrapper.instance().handleChange(e,'fname');
+            expect(wrapper.state('fname')).toEqual('jigar');
+            global.URL.createObjectURL = jest.fn(() => e.target.files[0]);
+            wrapper.instance().onChangeHandler(e);
+            expect(wrapper.state('srcImage')).toEqual({url:'example.png',type: 'image/png'});
+            wrapper.setState({errors:{test:'test case error'}});
+            expect(Modal.find('StudentForm').prop('errors')).toEqual({});
+            wrapper.update();
+            const component = renderer.create(
+                <StudentRegister  {...props}/>
+            );
+            let componentsnap = component.toJSON();
+            expect(componentsnap).toMatchSnapshot();
+        })
+
 })
