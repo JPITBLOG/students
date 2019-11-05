@@ -38,14 +38,3 @@ describe('Test case for gridTable',() =>{
         expect(wrapper.state({totalNumbarOfPage:2,dataLength:6,pageIndex:1}));
     })
 })
-// test('Test case for deleteData',() => {
-//     let wrapper = shallow(<GridTable {...props}/>);
-//     wrapper.setState({isdelete:1})
-//     wrapper.instance().deleteData("01234");
-// })
-// test('Test case for component did update',() => {
-//     const wrapper = shallow(<GridTable {...props}/>);
-//     wrapper.setState({isdelete:1,dataLength:5});
-//     wrapper.instance().componentDidUpdate();
-//     expect(wrapper.state({isdelete:0,allstudents:getAllStudent()}))
-// })
